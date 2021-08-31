@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Welcome back my friends...
+comments: true
 categories: [General]
 ---
 

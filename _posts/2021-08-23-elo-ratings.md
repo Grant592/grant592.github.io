@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Elo Ratings
+comments: true
 categories: [Stats, Rugby]
 ---
 
