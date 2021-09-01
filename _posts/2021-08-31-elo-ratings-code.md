@@ -11,7 +11,7 @@ I'll go over the initial implementation and how I calculated $k$ and home advant
 
 ## The Code  
 
-1. Import the required modules  
+### 1 - Import the required modules  
 ```python
 import numpy as np
 import pandas as pd
@@ -19,7 +19,7 @@ import requests
 import os
 ```  
 
-2. Create a class to parse and store a single seasons worth of results and fixture data  
+### 2 - Create a class to parse and store a single seasons worth of results and fixture data  
 ```python
 class SeasonData:
 
@@ -69,7 +69,7 @@ The above code creates a class which will scrape the season data from a certain 
 
 This dataframe will give us all the info we need for calculating the Elo ratings.  
 
-3. Create a simple Team class containing the team name and their current Elo rating. Note that any new team will start with an Elo rating of 1500:  
+### 3 - Create a simple Team class containing the team name and their current Elo rating. Note that any new team will start with an Elo rating of 1500:  
 ```python
 class PremTeam:
     def __init__(self, name):
@@ -78,7 +78,7 @@ class PremTeam:
 ```
   
 
-4. The next step is to create a class that can calculate and update Elo ratings:  
+### 4 - The next step is to create a class that can calculate and update Elo ratings:  
 ```python  
 class EloCalculator:
 
@@ -126,7 +126,7 @@ To explain, the code `home_rating = 10**((teams[fixture['home_team']].elo_rating
 * `fixture['home_team']` is a returning the home team from the row of the `SeasonData` row that was passed to the function.
 * `teams[fixture['home_team']` is then using this 'home_team' value to access the dictionary entry of `teams` which will return an instance of `PremTeam` from which we can read the elo_rating for a given team.  
 
-5. We now need to write some code to bring all these classes together. I'll go through it step by step.
+### 5 - We now need to write some code to bring all these classes together. I'll go through it step by step.
 
 ```python
 # Create list of season dates for parsing season data.
@@ -174,7 +174,8 @@ for season in seasons:
     # good teams often sligthly worse so we regress everyone toward the mean to 
     # account for this
     for team in teams:
-        teams[team].elo_rating = teams[team].elo_rating - np.abs((teams[team].elo_rating - 1500))/3 if teams[team].elo_rating > 1500 else teams[team].elo_rating + (np.abs(teams[team].elo_rating - 1500))/3
+        teams[team].elo_rating = teams[team].elo_rating - np.abs((teams[team].elo_rating - 1500))/3 \
+        if teams[team].elo_rating > 1500 else teams[team].elo_rating + (np.abs(teams[team].elo_rating - 1500))/3
     
     # Count the number of matches in the season
     n_matches = df.shape[0]
@@ -191,22 +192,22 @@ for team in teams.keys():
 ```  
 
 At the end of the 2019-2020 season, the Elo ratings ended up as follows (the teams are ordered by league position - note that Elo rating may not perfectly reflect league rating as it may depend on which teams a team beat/lost to):  
-* Wasps 1775.0
-* Exeter 1731.0
-* Bath 1647.0
-* Bristol 1615.0
-* Saracens 1572.0
-* Worcester 1565.0
-* Sale 1556.0
-* Harlequins 1525.0
-* Gloucester 1389.0
-* Northampton 1318.0
-* Leicester 1304.0
-* London Irish 1215.0
+* Wasps 1775
+* Exeter 1731
+* Bath 1647
+* Bristol 1615
+* Saracens 1572
+* Worcester 1565
+* Sale 1556
+* Harlequins 1525
+* Gloucester 1389
+* Northampton 1318
+* Leicester 1304
+* London Irish 1215
 
-6. Finally, we need to look at the best values for $k$ and $\mbox{home advantage}$. The way we will do this is by calculating the **mean squared error** between our predictions and our outcomes. More formally:  
+### 6 - we also need to look at the best values for $k$ and $\mbox{HA}$. The way we will do this is by calculating the **mean squared error** between our predictions and our outcomes. More formally:  
 $$
-MSE = \frac{1}{N} \sum_1^{\mbox{num matches}} (\mbox{Result} - \mbox{Prediction})^2  
+MSE = \frac{1}{N} \sum_1^{\mbox{N}} (\mbox{Result} - \mbox{Prediction})^2  
 $$  
 
 ```python  
@@ -224,7 +225,8 @@ sd2021.season_df.sort_values('date', inplace=True)
 # The teams Elo rating are based on fixtures prior to 2020-21 season, therefore
 # prior to start of season, revert all elo ratings 1/3 toward the mean.
 for team in teams:
-    teams[team].elo_rating = teams[team].elo_rating - np.abs((teams[team].elo_rating - 1500))/3 if teams[team].elo_rating > 1500 else teams[team].elo_rating + (np.abs(teams[team].elo_rating - 1500))/3
+    teams[team].elo_rating = teams[team].elo_rating - np.abs((teams[team].elo_rating - 1500))/3 \
+    if teams[team].elo_rating > 1500 else teams[team].elo_rating + (np.abs(teams[team].elo_rating - 1500))/3
 
 # Work through each match in the season. Calculate prediction for each match and updat elo
 from copy import deepcopy
@@ -260,9 +262,9 @@ for home in range(20,101,10):
 ```  
 
 When we plot the output of the above we can see that the best values for $k$ and $\mbox{home advantage}$ are 40 and 50 respectively. It should probably be noted that home advantage may have had less of an influence in this season due to the lack of crowds but we'll roll with it and see how it pans out over the current season. 
-![](images/parameters.png)  
+![](/images/parameters.png)  
 
-7. Finally, let's plug the values for $k$ and $\mbox{home advantage}$ back into the whole thing, run it from the start and see where each team will be starting from this coming season. The first value represents where they ended up at the end of 2020-2021 season and the second value is their starting value for this coming season after reverting each team towards the mean. 
+### 7 - Finally, let's plug the values for $k$ and $\mbox{HA}$ back into the whole thing, run it from the start and see where each team will be starting from this coming season. The first value represents where they ended up at the end of 2020-2021 season and the second value is their starting value for this coming season after reverting each team towards the mean. 
 
 | Team   | End of 2020-21 Season  | Start of 2021-2022 Season  |
 | -------|------------------------|----------------------------|
@@ -283,7 +285,7 @@ Saracens | 1548 | 1532
 
 ### Wrap up
 
-This wraps up my post. I'll start making predictions prior to the start of the season and we can see how accurate the Elo ratings are.
+This wraps up my post. I'll start making predictions prior to the start of the season and we can see how accurate the Elo ratings are. Once we're into the season and internationals start, I'll consider revising the ratings depending on the number of international players missing amongst other things. 
 
 
 
