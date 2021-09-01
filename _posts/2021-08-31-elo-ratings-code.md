@@ -69,7 +69,9 @@ The above code creates a class which will scrape the season data from a certain 
 
 This dataframe will give us all the info we need for calculating the Elo ratings.  
 
-### 3 - Create a simple Team class containing the team name and their current Elo rating. Note that any new team will start with an Elo rating of 1500:  
+### 3 - Create a simple Team class containing the team name and their current Elo rating.   
+
+Note that any new team will start with an Elo rating of 1500:  
 ```python
 class PremTeam:
     def __init__(self, name):
@@ -205,7 +207,10 @@ At the end of the 2019-2020 season, the Elo ratings ended up as follows (the tea
 * Leicester 1304
 * London Irish 1215
 
-### 6 - we also need to look at the best values for $k$ and $\mbox{HA}$. The way we will do this is by calculating the **mean squared error** between our predictions and our outcomes. More formally:  
+### 6 - we also need to look at the best values for $k$ and $\mbox{HA}$.  
+
+The way we will do this is by calculating the **mean squared error** between our predictions and our outcomes. More formally:  
+
 $$
 MSE = \frac{1}{N} \sum_1^{\mbox{N}} (\mbox{Result} - \mbox{Prediction})^2  
 $$  
@@ -264,7 +269,9 @@ for home in range(20,101,10):
 When we plot the output of the above we can see that the best values for $k$ and $\mbox{home advantage}$ are 40 and 50 respectively. It should probably be noted that home advantage may have had less of an influence in this season due to the lack of crowds but we'll roll with it and see how it pans out over the current season. 
 ![](/images/parameters.png)  
 
-### 7 - Finally, let's plug the values for $k$ and $\mbox{HA}$ back into the whole thing, run it from the start and see where each team will be starting from this coming season. The first value represents where they ended up at the end of 2020-2021 season and the second value is their starting value for this coming season after reverting each team towards the mean. 
+### 7 - Finally, let's plug the values for $k$ and $\mbox{HA}$ back into the whole thing.  
+
+I'll run it from the start and see where each team will be starting from this coming season. The first value represents where they ended up at the end of 2020-2021 season and the second value is their starting value for this coming season after reverting each team towards the mean. 
 
 | Team   | End of 2020-21 Season  | Start of 2021-2022 Season  |
 | -------|------------------------|----------------------------|
