@@ -13,7 +13,8 @@ Always good to start with a really terrible joke. Anyway, to the proper stuff...
 
 The Elo rating system was originally developed by Arpad Elo as an improved chess-rating system but has been taken on by loads of other sports bodies and stats sites as a ranking system. From [Wikipedia](https://en.wikipedia.org/wiki/Elo_rating_system):  
 > A player's Elo rating is represented by a number which may change depending on the outcome of rated games played. After every game, the winning player takes points from the losing one. The difference between the ratings of the winner and loser determines the total number of points gained or lost after a game. If the high-rated player wins, then only a few rating points will be taken from the low-rated player. However, if the lower-rated player scores an upset win, many rating points will be transferred. The lower-rated player will also gain a few points from the higher rated player in the event of a draw. This means that this rating system is self-correcting. Players whose ratings are too low or too high should, in the long run, do better or worse correspondingly than the rating system predicts and thus gain or lose rating points until the ratings reflect their true playing strength.
-> An Elo rating is a comparative rating only, and is valid only within the rating pool where it was established  
+> An Elo rating is a comparative rating only, and is valid only within the rating pool where it was established   
+
 [FiveThirtyEight](https://fivethirtyeight.com/methodology/how-our-nfl-predictions-work/) have some fantastic explanations for how they run their Elo rating systems so I'll not try and explain how these guys do it but it's definitely worth a read to see a system in a bit more depth. I'll focus this on how I've implemented the system and how I've tuned some of the parameters.
 
 One of the articles I came across the sparked my interest in this was [this one](https://sites.northwestern.edu/msia/2019/01/25/introducing-a-new-rating-system-for-world-rugby-union-based-on-the-elo-rating-system-the-elor-elo-rugby/) although there was a bit of trawling the web to fill in a few blanks in some of the details.
@@ -21,7 +22,7 @@ One of the articles I came across the sparked my interest in this was [this one]
 ## Calculating Elo ratings  
 There's two factors we need to take into consideration when calculating Elo ratings - the k factor and the home advantage (I'll refer to these a $k$ and $HA$). I'll come onto these later but thought I'd highlight them now so nobody wonders where they've come from in the equation. All you need to know now for now is that they're constants and don't change. We'll use an example of two teams as we go through the calcs to see what's going on. TeamA have an Elo rating of 1600 and TeamB of 1400 (unlucky TeamB). We'll start with home advantage = 50 and k = 50.
 
-### Step 1 - Calculate transformed ratings
+### Step 1 - Calculate transformed ratings  
 $$
 R_{home} = 10^{(ELO_H + HA)/400}  
 $$  
@@ -53,17 +54,20 @@ The MOVM is the same for both teams. First let's look at what the first part of 
 
 
 ### Step 4 - Update Elo ratings  
-Now we've calculated all the various parts, all we need to do is multiply them together and update the original ELo rating. The $\mbox{home win}$  value is just a binary value with a 1 for a home win, 0 for home loss and 0.5 for a draw (and the same for $\mbox{away win}$).
+Now we've calculated all the various parts, all we need to do is multiply them together and update the original ELo rating. The $\mbox{home win}$  value is just a binary value with a 1 for a home win, 0 for home loss and 0.5 for a draw (and the same for $\mbox{away win}$).  
+
 $$
 Elo_{home_{updated}} = Elo_{home} + k \cdot  MOVM  \cdot (\mbox{home win} - E_{home}) 
 $$   
+
 $$
 Elo_{away_{updated}} = Elo_{away} + k \cdot  MOVM  \cdot (\mbox{away win} - E_{away}) 
 $$   
 
 In step 3, we looked at the effect of MOVM and we can see what it is doing when updating the Elo ratings. If the favourite wins, the MOVM is less than 1 and therefore acts to reduce the overall impact of the result when updating the Elo values i.e. the winning team gains only a few points and the losing team loses only a few points. If the underdog wins, the MOVM is greater than 1 and therefore acts to increase the number of points that a weaker team takes from a stronger team and vice versa. 
 
-Let's assume that TeamA wins by a margin of 50 points. The Elo ratings would be updated as follows:
+Let's assume that TeamA wins by a margin of 50 points. The Elo ratings would be updated as follows:  
+
 $$
 Elo_{home_{updated}} = 1600 + 50 \cdot 3.9 \cdot 0.92 \cdot (1 - 0.808) = 1634
 $$  
