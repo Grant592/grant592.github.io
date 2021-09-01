@@ -269,7 +269,8 @@ for home in range(20,101,10):
 When we plot the output of the above we can see that the best values for $k$ and $\mbox{home advantage}$ are 40 and 50 respectively. It should probably be noted that home advantage may have had less of an influence in this season due to the lack of crowds but we'll roll with it and see how it pans out over the current season. 
 ![](/images/parameters.png)  
 
-### 7 - Finally, let's plug the values for $k$ and $\mbox{HA}$ back into the whole thing.  
+### 7 - Finally, let's plug the values for $k$ and $\mbox{HA}$ back into the whole thing.   
+
 
 I'll run it from the start and see where each team will be starting from this coming season. The first value represents where they ended up at the end of 2020-2021 season and the second value is their starting value for this coming season after reverting each team towards the mean. 
 
