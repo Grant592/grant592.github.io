@@ -5,7 +5,7 @@ comments: true
 categories: [Stats, Rugby]
 ---
 
-So here we are sports fans...the start of the new prem rugby season this weekend. Let's have a look at what our current [Elo rating system]({% post_url 2021-08-23-elo-ratings %}) is giving us for this weekend.
+So here we are sports fans...the start of the new prem rugby season. Let's have a look at what our current [Elo rating system]({% post_url 2021-08-23-elo-ratings %}) is giving us for this weekend.
 
 ## Bristol vs Saracens  
 One thing to note with this fixture is the rating system has taken Saracens Elo rating from the end of their relegation season and applied the same formula as every other team at the start of the season (i.e. regressed towards the mean).
