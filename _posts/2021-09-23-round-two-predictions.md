@@ -7,7 +7,7 @@ categories: [Stats, Rugby]
 
 Anyone hoping to find an article on Roxy Music and airport synth extraordinaire [Brian Eno](https://www.youtube.com/watch?v=vNwYtllyt3Q) may want to stop reading now. E-No was a more apt description of the Elo rating system after last week's win predictions which were right on 2 out of 6 of the fixtures. It certainly looks from last weeks scorelines (except Sarries vs Bristol) that home advantage is having more of an effect now that crowds are back. 
 
-Here's the changes in Elo ratings after last weeks fixtures:
+Here's the changes in Elo ratings after last weeks fixtures: 
 
 
 | Team   | Start of 2021-22 Season  | After Round 1  | Elo change  |
