@@ -91,7 +91,7 @@ ORDER BY countOfMembers DESC LIMIT 5;
 +---------------------------------+
 ```  
 
-And we see that Uriah Heep are the merry-go round of the Prog Rock world. Whether they're really a Prog Rock band could be up for debate but they did have multiple [Roger Dean](https://en.wikipedia.org/wiki/Roger_Dean_(artist) album covers so that probably qualifies them. 
+And we see that Uriah Heep are the merry-go round of the Prog Rock world. Whether they're really a Prog Rock band could be up for debate but they did have multiple [Roger Dean](https://en.wikipedia.org/wiki/Roger_Dean_(artist)) album covers so that probably qualifies them. 
 
 
 ## Which band has released the most music?  
