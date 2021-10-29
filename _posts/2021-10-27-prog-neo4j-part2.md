@@ -176,7 +176,7 @@ RETURN memberName, reduce(totalRelLengths = 0, n in relLengths | totalRelLengths
 +--------------------------------------+
 ```  
 
-In the above query, we're collecting all the members of Asia in one list, all other Musicians in another and then iterating over each pair of and Asia member and non-Asia member to find the shortest path between them. From there we collect the size of each path and use the `reduce` function to sum them all up. From the results, we can see that John Wetton was the best connected member of Asia with the lowest number of relationships needed to reach the 198 other musicians.  
+In the above query, we're collecting all the members of Asia in one list, all other Musicians in another and then iterating over each pair of an Asia member and non-Asia member to find the shortest path between them. From there we collect the size of each path and use the `reduce` function to sum them all up. From the results, we can see that John Wetton was the best connected member of Asia with the lowest number of relationships needed to reach the 198 other musicians.  
 
 ## Community Detection 
 
