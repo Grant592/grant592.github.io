@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Graph Databases for Rugby Analysis
+title: Graph Databases for Rugby Analytics - Part 1
 comments: true
 categories: [Neo4J, Graph Databases, Rugby]
 ---
@@ -381,6 +381,6 @@ RETURN p.forename + " " + p.surname as playerName, t.name as teamName, labels(ev
  
 ```  
 
-This needs to be taken with a pinch of salt as the sequence of 20 events leading to a try doesn't look like a continuous series in this instance as we've got examples of "Kick in Touch". However it shows how powerful it can be to traverse relationships using Cypher. 
+This needs to be taken with a pinch of salt as the sequence of 20 events leading to a try doesn't look like a continuous series in this instance as we've got examples of "Kick in Touch". However it shows how powerful it can be to traverse relationships using Cypher. That's it for Part 1, stay tuned for part 2 where we'll go further into querying the data. 
 
 
