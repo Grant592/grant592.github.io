@@ -115,7 +115,7 @@ def load_player_data(player_data, driver):
                 mins=mins
             )
 ```  
-We can store the information about the layers involvement in the match in the relationship `PLAYED_MATCH` properties.  
+We can store the information about the players involvement in the match in the relationship `PLAYED_MATCH` properties.  
 
 ### Creating all the match events  
 Every event in the Opta data can have multiple descriptors, each of which could be used as a node label. Luckily, APOC has a function that will do this for us - `apoc.create.addLabels(node, [labels])` In the following code, we firstly create each event and assign it multiple labels based on the Opta descriptors. We then use another APOC function to chain all the match events together in a linked list using `apoc.nodes.link(events, "NEXT_EVENT")`.  
