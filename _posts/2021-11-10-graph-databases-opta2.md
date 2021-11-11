@@ -38,15 +38,15 @@ RETURN t1.name as teamName, COUNT(*) as numFixtures
 So let's get stuck straight in, we'll not mess around finding number of carries, tackles etc, this is fairly easy using relational databases. We'll use the strength of graph databases to look at relationships between events. We'll start by looking at the events that lead to a try, similar to last weeks blog post.  
 
 ```sql  
-## Match any chain of events up to length 100 that are part of the same sequence
+/* Match any chain of events up to length 100 that are part of the same sequence */
 MATCH p=(e:Event)-[:NEXT_EVENT_PER_TEAM*..100]->(t:Try) WHERE e.sequenceId = t.sequenceId
 
-## Only return the path where the first event s the start of the sequence (avoid all sub-paths)  
+/* Only return the path where the first event s the start of the sequence (avoid all sub-paths) */
 MATCH (pre:Event)-[:NEXT_EVENT_PER_TEAM]->(e) WHERE pre.sequenceId <> e.sequenceId
 
 MATCH (team:Team)-[:FIXTURE_EVENT]->(e)<-[:HAS_EVENT]-(f:Fixture)
 
-## Return the ActionType of each event along with the matchTime and subtract the min from the max times
+/* Return the ActionType of each event along with the matchTime and subtract the min from the max times */
 WITH team.name as teamName, [n in nodes(p) | labels(n)[1]] as events, [n in nodes(p) | n.matchTime] as times
 RETURN teamName, events, times[-1] - times[0] as sequenceLength LIMIT 100
 ``` 
@@ -56,7 +56,7 @@ What would this look like in SQL? I'm not sure whether to be embarrassed or prou
 ```sql  
 WITH row_query AS
 (
-## We want to take every team and fixture and give each row a number, this will help with ordering the events
+/* We want to take every team and fixture and give each row a number, this will help with ordering the events */
   SELECT
     FXID,
     team_id,
@@ -67,8 +67,8 @@ WITH row_query AS
     match_data
 ),
 try_action_row AS (
-## Now, we want to take only the rows that contain a try so we can return the FXID, team and sequence_id
-## to filter down which sequences we want from the overall database
+/* Now, we want to take only the rows that contain a try so we can return the FXID, team and sequence_id
+   to filter down which sequences we want from the overall database */  
   SELECT
     FXID,
     team_id,
@@ -79,9 +79,9 @@ try_action_row AS (
   WHERE
     `action` = 9
 )
-## Now we can filter only sequences that contain a try and only the events leading upto the try
-## by ensuring the row_num of the event is less than or equal to the row num of the try
-##  and finally use GROUP_CONCAT to create a sequence of all the events ordering by row number
+/* Now we can filter only sequences that contain a try and only the events leading upto the try
+ by ensuring the row_num of the event is less than or equal to the row num of the try
+ and finally use GROUP_CONCAT to create a sequence of all the events ordering by row number */
 SELECT
   rq.FXID,
   rq.team_id,
@@ -249,24 +249,24 @@ Looking at the `Attacking Qualities` column (attacking qualities are actions suc
 So we've looked at the try scoring sequences by team, but can we see which players have the most involvements per try? We'll run this little number with Cypher.  
 
 ```sql  
-## Match all events as part of a try scoring sequence  
+/* Match all events as part of a try scoring sequence */
 MATCH p=(e:Event)-[:NEXT_EVENT_PER_TEAM*..100]->(t:Try) WHERE e.sequenceId = t.sequenceId
 
-## Ensure we only take the longest path. Without this, the query would return 
-## every shorter path that made up the bigger path 
+/* Ensure we only take the longest path. Without this, the query would return 
+ every shorter path that made up the bigger path */
 MATCH (pre:Event)-[:NEXT_EVENT_PER_TEAM]->(e) WHERE pre.sequenceId <> e.sequenceId
 
-## Get the team name and fixture id for the event that starts each sequence
+/* Get the team name and fixture id for the event that starts each sequence */
 MATCH (team:Team)-[:FIXTURE_EVENT]->(e)<-[:HAS_EVENT]-(f:Fixture)
 WITH team.name as teamName, t.sequenceId AS seqId, nodes(p) as events, f.fxid as fxid
 
-## Iterate through all of the events in each sequence
+/* Iterate through all of the events in each sequence */ 
 UNWIND events AS event
 
-## Match the player the event was attributed to
+/* Match the player the event was attributed to */
 MATCH (event)<-[:INDIVIDUAL_EVENT]-(p:Player) 
 
-## Remove scrum halfs as they rank highest anyway due to num passes
+/* Remove scrum halfs as they rank highest anyway due to num passes */  
 WHERE NOT EXISTS((p)-[:HAS_APPEARANCE]-(:Appearance {posId: 9}))
 WITH 
   teamName, 
