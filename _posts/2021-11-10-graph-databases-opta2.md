@@ -305,3 +305,4 @@ And then if we look at the other two events he was involved in we see he also ha
 Hopefully this has been an interesting look into modelling rugby data with Graph Databases. Cypher and Neo4j gives us the ability to query sequences and relationships in a much more efficient manner than traditional databases.   
 
 P.S. Hi Tim.  
+P.P.S Hi Mark.
