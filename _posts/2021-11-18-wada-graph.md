@@ -5,8 +5,6 @@ comments: true
 categories: [Neo4J, Graph Databases, SPARQL]
 ---
 
-# WADA - Drug-Gene Interactions - Part 1  
-
 When exploring some linked datasets I stumbled across [Bio2RDF](https://bio2rdf.org/), a resource for linked data for life sciences. This got me thinking how I could link this into WADA's prohibited list and examine some of the genes linked to these Performance Enhancing Drugs (PED's).  
 
 ### Scraping the Prohibited List
