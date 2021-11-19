@@ -9,7 +9,7 @@ categories: [Neo4J, Graph Databases, SPARQL]
 
 When exploring some linked datasets I stumbled across [Bio2RDF](https://bio2rdf.org/), a resource for linked data for life sciences. This got me thinking how I could link this into WADA's prohibited list and examine some of the genes linked to these Performance Enhancing Drugs (PED's).  
 
-## Scraping the Prohibited List
+### Scraping the Prohibited List
 
 The first task was scraping the list of prohibited anabolic agents from the WADA website. This was a bit trickier than first thought as the website was dynamically loading the content when it was opened therefore using a simple `requests.get` wasn't actually returning the content I wanted. As always, stackoverflow had an answer (which has actually turned out to be a revelation and could have saved me alot of time on some previous projects): if we use a webdriver like Selenium to open the page then call BeautifulSoup on the `driver.page_source`, we get the loaded version of the html.
 
