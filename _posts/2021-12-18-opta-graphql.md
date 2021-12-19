@@ -396,6 +396,6 @@ query fixturesByTeam {
 ```     
 
 
-### Closing Remarks  
+### Closing Remarks  
 
 So there we have it, a simple GraphQL API up and running returning data from a Neo4j database. The next post will look at how we can extend the type definitions in order to include customer Cypher queries.  
