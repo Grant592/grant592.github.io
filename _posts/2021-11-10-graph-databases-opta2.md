@@ -5,7 +5,7 @@ comments: true
 categories: [Neo4J, Graph Databases, Rugby]
 ---
 
-Following on from [last weeks post]({% post_url 2021-11-04-graphs-databases-opta %}) where we looked at how to model Prem Rugby data in  Neo4j, we'll now start to look at how we can extract information and insight.
+Following on from [last weeks post]({% post_url 2021-11-04-graph-databases-opta %}) where we looked at how to model Prem Rugby data in  Neo4j, we'll now start to look at how we can extract information and insight.
 
 As a brief introduction let's see how many fixtures for each team are in the database (which is a selection of some Opta data from dates between 2016 and 2020).  
 
