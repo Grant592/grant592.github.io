@@ -391,7 +391,7 @@ query fixturesByTeam {
     ]
   }
 }
-```    
+```     
 
 ### Closing Remarks  
 
