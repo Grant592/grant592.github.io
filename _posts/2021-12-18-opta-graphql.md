@@ -347,7 +347,9 @@ And next up, we can take a slightly more complex query. Breaking it down:
 * From the list of all teams, take just the team called 'Leicester'
 * Return the team ID
 * Find all the fixtures that Leicester played in (this is a relationship in Neo4j) and return the `home_away` property from the relationship.
-* Finally, for all of these fixtures, return the fixture ID (`fxid`) and the home and away scores (`HTFTSC` and `ATFTSC`)
+* Finally, for all of these fixtures, return the fixture ID (`fxid`) and the home and away scores (`HTFTSC` and `ATFTSC`). 
+
+
 
 ```js
 query fixturesByTeam {
@@ -392,6 +394,7 @@ query fixturesByTeam {
   }
 }
 ```     
+
 
 ### Closing Remarks  
 
