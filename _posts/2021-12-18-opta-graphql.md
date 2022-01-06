@@ -347,7 +347,9 @@ And next up, we can take a slightly more complex query. Breaking it down:
 * From the list of all teams, take just the team called 'Leicester'
 * Return the team ID
 * Find all the fixtures that Leicester played in (this is a relationship in Neo4j) and return the `home_away` property from the relationship.
-* Finally, for all of these fixtures, return the fixture ID (`fxid`) and the home and away scores (`HTFTSC` and `ATFTSC`)
+* Finally, for all of these fixtures, return the fixture ID (`fxid`) and the home and away scores (`HTFTSC` and `ATFTSC`). 
+
+
 
 ```js
 query fixturesByTeam {
@@ -391,8 +393,9 @@ query fixturesByTeam {
     ]
   }
 }
-```    
+```     
 
-### Closing Remarks  
+
+### Closing Remarks  
 
 So there we have it, a simple GraphQL API up and running returning data from a Neo4j database. The next post will look at how we can extend the type definitions in order to include customer Cypher queries.  
