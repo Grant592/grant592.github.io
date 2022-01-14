@@ -139,11 +139,9 @@ training strategy...
 {'name': 'Nicholas Gill', 'university': 'Te Huataki Waiora School of Health,
  Adams Center for High Performance, The University of Waikato, Tauranga, NZ;
   and.'}
-```  
+```
 
-
-
-### Loading the Data into Neo4j  
+### Loading the Data into Neo4j
 
 The next stage was to load the data into the Neo4j database. We'll start by creating the driver in python and creating some constraints in the database which will help with the efficiency of loading and merging the nodes.  
 
@@ -184,7 +182,11 @@ This was enough to cover pretty much all the different variations in how the num
 
 ![](/images/regex_meme.png)  
 
+<<<<<<< HEAD
 ### Loading the Graph - Part 2
+=======
+### Loading the Graph - part 2 
+>>>>>>> 4a3d452e78c6dd9f97223e70a84636bd9f53c28f
 
 Now we know how we can clean up some of the data it's time to load the graph.  
 
