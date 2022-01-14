@@ -166,7 +166,7 @@ with driver.session() as session:
 After a quick initial load of the data, it became pretty clear that although the paper details and author names had been scraped without an issue, the university associations we're scraped as a single string and not as multiple separate strings for each author. Here's one example:  
 > 1Physical Effort Laboratory, Sports Center, Federal University of Santa Catarina, Florianópolis, Brazil; and 2Human Performance Laboratory, Faculty of Kinesiology, University of Calgary, Calgary, Alberta, Canada.  
 
-And there were multiple other weird and wonderful ways the numbers were hidden in the text. We had to turn to everybody's best friend - Regex.  Here's what I ended up splitting the text with:  
+And there were multiple other weird and wonderful ways the numbers were hidden in the text. We had to turn to everybody's best friend - Regex.  Here's what I ended up using to split the text:  
 ```
 '(^\d+ *(?=[\. A-Za-z]*)|; *\d|[; ]+and *\d)')
 ```  
@@ -184,35 +184,43 @@ This was enough to cover pretty much all the different variations in how the num
 
 ![](/images/regex_meme.png)  
 
-### Loading the Graph - part 2
+### Loading the Graph - Part 2
 
 Now we know how we can clean up some of the data it's time to load the graph.  
 
 ```python  
+# starts a neo4j driver session
 with driver.session() as session:
 
     tx = session.begin_transaction()
 
     i = 0
-    j = 0
+
     for paper in papers:
         try:
             title = paper.title
             abstract = paper.abstract
             paper_ref = paper.pubmed_ref
+            # We can use the __dict__ function of a class to create a map
+            # for each of the classes varibles - useful for passing to Neo4j
             author_map = [author.__dict__ for author in paper.authors]            
 
             query = """
+            // Merge the paper into the db
                 MERGE (p:Paper {pubmedRef: $pubmedRef})
                 ON CREATE SET
                   p.abstract =
                   CASE WHEN $abstract IS NOT NULL THEN $abstract ELSE NULL END,
                   p.title = $title
+            // Unwind the list of authors associated with a paper
                 WITH p, $authorMap as authors
                 UNWIND authors as author
                 MERGE (a:Author {name: author.name})
                 MERGE (a)-[:AUTHORED]->(p)
                 WITH id(p) as paperId, a, author
+            // Split the university string into separate institutions and
+            // create a relationship between these institutions and the
+            // research paper
                 CALL apoc.do.when(
                   author.university IS NOT NULL,
                   "WITH author.university as uniList, paperId as paperId
@@ -237,8 +245,6 @@ with driver.session() as session:
             )
 
             i += 1
-            j += 1
-
             if i == 100:
                 tx.commit()
                 print(j, "records processed")
@@ -251,3 +257,22 @@ with driver.session() as session:
 
     tx.commit()
     print(j, "lines processed")
+```  
+
+And there we have it, the data loaded into the graph for some analysis in part 2...  
+
+
+![](/images/jscr_screenshot.png)   
+
+And finally, just to double check that my former colleague Michael 'Fergy' Ferguson's all time favourite researcher is in the database, we can run a quick query...
+
+```sql  
+MATCH path=(u:University)<-[:ASSOCIATED_INSTITUTION]-(p:Paper)<-[:AUTHORED]-(a:Author)
+WHERE a.name CONTAINS 'Suchomel' RETURN path LIMIT 25
+```  
+
+And we can see that Fergo will be very happy that he has a number of research papers within the newly created database.  
+
+![](/images/suchomel.png)  
+
+Stay tuned for Part 2!  
