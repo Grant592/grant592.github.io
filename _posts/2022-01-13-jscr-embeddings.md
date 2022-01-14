@@ -186,6 +186,7 @@ This was enough to cover pretty much all the different variations in how the num
 
 Now we know how we can clean up some of the data it's time to load the graph.  
 
+
 ```python  
 # starts a neo4j driver session
 with driver.session() as session:
