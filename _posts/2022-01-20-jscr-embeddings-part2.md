@@ -5,7 +5,7 @@ comments: true
 categories: [ Neo4J, Graph Databases, Data Science, Sports Science ]
 ---
 
-In [last weeks post]({% post_url 2022-01-12-jscr-embeddings %}), we loaded up a graph with research papers and the associated authors and institutions. This week we'll look at a few different things:
+In [last weeks post]({% post_url 2022-01-13-jscr-embeddings %}), we loaded up a graph with research papers and the associated authors and institutions. This week we'll look at a few different things:
 * Using the Neo4j GDS library to run some analysis on the graph.
 * Using named entity recognition to extract entities from the paper abstracts and create nodes for these entities.
 * Computing embeddings for various aspects of the graph and comparing these to some other embedding methods.  
