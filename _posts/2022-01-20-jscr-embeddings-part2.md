@@ -232,10 +232,9 @@ with driver.session() as session:
         """
     ))
 ```  
-This one is similar to the results above. For people who only have one co-authorship between them, they get a similarity score of 1. If we have people with co-authorships but also papers not co-authored with the other person, then this is where the similarity scores start to reduce. However, I'd question the value of this over a simple jaccard similarity based on a bipartite 'Author', 'Paper' graph projection.  
+This one is similar to the results above. For people who only have one co-authorship between them, they get a similarity score of 1. If we have people with co-authorships but also papers not co-authored with the other person, then this is where the similarity scores start to reduce. However, I'd question the value of this over a simple jaccard similarity based on a bipartite 'Author', 'Paper' graph projection.   
 
-
-### Named Entity Recognition  
+### Named Entity Recognition
 
 To finish this week's post and lead into Part 3, we'll extract the entities from each of the paper abstracts and use them to create `Entity` nodes in the graph. Fortunately there's some `apoc` functions which will allow us to do this relatively simply.
 
@@ -261,7 +260,7 @@ CALL apoc.periodic.iterate("
   }
 );  
 ```  
-Given that batching in this way didn't work, along with trying various different methods of `UNWIND`, the next approach was to just call each request one by one for each paper.
+Given that batching in this way didn't work, along with trying various different methods of `UNWIND`, the next approach was to just call each request one by one for each paper. Probably not the optimal way to do it but it worked in the end.  
 
 ```python  
 with driver.session() as session:
