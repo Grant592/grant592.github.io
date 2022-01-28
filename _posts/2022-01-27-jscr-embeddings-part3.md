@@ -115,24 +115,24 @@ If we have a look at a cluster of papers highlighted in the red circle, it's fai
 
 | Titles |
 |----|
-'Physiological responses of simulated karate sparring matches in young men and boys',
- 'Assessment of maximal cardiorespiratory performance and muscle power in the Italian Olympic judoka',
- 'Cardiovascular response to punching tempo',
- 'Is Bilateral Deficit in Handgrip Strength Associated With Performance in Specific Judo Tasks?',
- 'Early Signs of Inflammation With Mild Oxidative Stress in Mixed Martial Arts Athletes After Simulated Combat',
- 'Physiological Responses During Female Judo Combats: Impact of Combat Area Size and Effort to Pause Ratio Variations',
- 'Physiological Responses and Time-Motion Analysis of Kickboxing: Differences Between Full Contact, Light Contact, and Point Fighting Contests',
- 'Exercise Response to Real Combat in Elite Taekwondo Athletes Before and After Competition Rule Changes',
- 'Validity of an Interval Taekwondo-Specific Cardiopulmonary Exercise Test',
- "Effects of High-Intensity Interval Training on Olympic Combat Sports Athletes' Performance and Physiological Adaptation: A Systematic Review",
- 'Physiological and Biomechanical Responses to an Acute Bout of High Kicking in Dancers',
- 'Can Caffeine Intake Improve Neuromuscular and Technical-Tactical Performance During Judo Matches?',
- 'Effects of Judo Training on Bones: A Systematic Literature Review',
- 'Effect of Postactivation Potentiation Induced by Elastic Resistance on Kinematics and Performance in a Roundhouse Kick of Trained Martial Arts Practitioners',
- 'Rating of Perceived Exertion for Quantification of Training and Combat Loads During Combat Sport-Specific Activities: A Short Review',
- 'Mixed Martial Arts Induces Significant Fatigue and Muscle Damage Up to 24 Hours Post-combat',
- 'Physiological Responses and Time-Motion Analysis of Small Combat Games in Kickboxing: Impact of Ring Size and Number of Within-Round Sparring Partners',
- 'Physical and Physiological Attributes of Wrestlers: An Update'
+| 'Physiological responses of simulated karate sparring matches in young men and boys' |
+|'Assessment of maximal cardiorespiratory performance and muscle power in the Italian Olympic judoka' |
+|'Cardiovascular response to punching tempo' |
+|'Is Bilateral Deficit in Handgrip Strength Associated With Performance in Specific Judo Tasks?' |
+|'Early Signs of Inflammation With Mild Oxidative Stress in Mixed Martial Arts Athletes After Simulated Combat' |
+|'Physiological Responses During Female Judo Combats: Impact of Combat Area Size and Effort to Pause Ratio Variations' |
+|'Physiological Responses and Time-Motion Analysis of Kickboxing: Differences Between Full Contact, Light Contact, and Point Fighting Contests' |
+|'Exercise Response to Real Combat in Elite Taekwondo Athletes Before and After Competition Rule Changes' |
+|'Validity of an Interval Taekwondo-Specific Cardiopulmonary Exercise Test' |
+|"Effects of High-Intensity Interval Training on Olympic Combat Sports Athletes' Performance and Physiological Adaptation: A Systematic Review" |
+|'Physiological and Biomechanical Responses to an Acute Bout of High Kicking in Dancers' |
+|'Can Caffeine Intake Improve Neuromuscular and Technical-Tactical Performance During Judo Matches?' |
+|'Effects of Judo Training on Bones: A Systematic Literature Review' |
+|'Effect of Postactivation Potentiation Induced by Elastic Resistance on Kinematics and Performance in a Roundhouse Kick of Trained Martial Arts Practitioners' |
+|'Rating of Perceived Exertion for Quantification of Training and Combat Loads During Combat Sport-Specific Activities: A Short Review' |
+|'Mixed Martial Arts Induces Significant Fatigue and Muscle Damage Up to 24 Hours Post-combat' |
+|'Physiological Responses and Time-Motion Analysis of Small Combat Games in Kickboxing: Impact of Ring Size and Number of Within-Round Sparring Partners' |
+|'Physical and Physiological Attributes of Wrestlers: An Update' |
 
  ### Author Embeddings
 
