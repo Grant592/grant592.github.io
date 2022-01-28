@@ -132,7 +132,9 @@ If we have a look at a cluster of papers highlighted in the red circle, it's fai
 |'Rating of Perceived Exertion for Quantification of Training and Combat Loads During Combat Sport-Specific Activities: A Short Review' |
 |'Mixed Martial Arts Induces Significant Fatigue and Muscle Damage Up to 24 Hours Post-combat' |
 |'Physiological Responses and Time-Motion Analysis of Small Combat Games in Kickboxing: Impact of Ring Size and Number of Within-Round Sparring Partners' |
-|'Physical and Physiological Attributes of Wrestlers: An Update' |
+|'Physical and Physiological Attributes of Wrestlers: An Update' | 
+
+
 
  ### Author Embeddings
 
