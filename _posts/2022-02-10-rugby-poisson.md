@@ -677,7 +677,7 @@ pd.cut(df['MatchTimeMinDelta'], bins=intervals).value_counts().plot(kind='bar')
 
 
     
-![png](images/rugby_poisson_27_1.png)
+![png](/images/rugby_poisson_27_1.png)
     
 
 
@@ -766,7 +766,7 @@ for i,team in enumerate(tries_per_game.index.get_level_values(1).unique()):
 
 
     
-![png](images/rugby_poisson_33_0.png)
+![png](/images/rugby_poisson_33_0.png)
     
 
 
@@ -814,7 +814,7 @@ for i,team in enumerate(tries_per_game.index.get_level_values(1).unique()):
 
 
     
-![png](images/rugby_poisson_37_0.png)
+![png](/images/rugby_poisson_37_0.png)
     
 
 
