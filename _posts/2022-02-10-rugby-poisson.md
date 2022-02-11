@@ -819,7 +819,7 @@ for i,team in enumerate(tries_per_game.index.get_level_values(1).unique()):
 
 
 ### Conclusion
-And there we have it, we can see that try scoring in Premiership rugby can be fairly accurately by a negative binomial distribution and not a Poisson distibution which is used quite often in football.
+And there we have it, we can see that try scoring in Premiership rugby can be fairly accurately modelled by a negative binomial distribution and not a Poisson distibution which is used quite often in football.
 
 Stay tuned for next week when I'll be starting a mini series on recommendations combining graphs and image recognition...
 
