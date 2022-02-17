@@ -10,7 +10,12 @@ So in the past couple of weeks a Kaggle challenge has been opened up with the ta
 
 ## Loading the data
 
-The data can be loaded into a neo4j database using this [script](https://github.com/Grant592/H-M_recs/blob/main/load_hm_data.cql)
+The data can be loaded into a neo4j database using this [script](https://github.com/Grant592/H-M_recs/blob/main/load_hm_data.cql). The resulting data model should look something like this:  
+
+![](/images/articles_graph.png)  
+
+
+
 
 ## Exploratory Analysis
 
