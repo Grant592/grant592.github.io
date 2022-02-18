@@ -29,8 +29,7 @@ cur = conn.cursor()
 The aim of the query is to return all of the tries scored and the time in the match that they were scored so we could then calculate the average time period between tries. This sounded simple at first, however I realised I also needed to find a way to return an entry for a team in a fixture even if they didn't score a try so we could consider the additional 80 minutes between tries scored.
 
 
-```python
-query = """
+```sql
 
 // Select any fixtures between premiership teams
 WITH fixtures AS (
@@ -71,9 +70,9 @@ WHERE EXISTS
 AND
   action = 9 
 
-// We then need to check for games whereby there wasn't a try scored by a team
-// and return a dummy entry for this match. We can query with a NOT EXISTS to check
-// that a try didnt occur in a fixture for a team
+/* We then need to check for games whereby there wasn't a try scored by a team
+and return a dummy entry for this match. We can query with a NOT EXISTS to check
+that a try didnt occur in a fixture for a team */
 
 UNION
 
