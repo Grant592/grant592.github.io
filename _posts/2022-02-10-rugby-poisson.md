@@ -104,9 +104,9 @@ WHERE NOT EXISTS (
     action = 9
   )
 
-"""
 ```
-
+  
+  
 
 ```python
 cur.execute(query)
