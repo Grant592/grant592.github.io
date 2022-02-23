@@ -221,7 +221,7 @@ Potentially the for loop is a bit more 'pythonic' but the performance is almost 
 
 #### Tidying Things Up  
 
-When moving on to looking at image similarity using the Neo4j GDS Library, I cam across a Neo4j `NullPointer` when trying to create a graph projection. It turned out it was the images that didn't have an image were causing the issue so I had to add some zero vectors in for these images.
+When moving on to looking at image similarity using the Neo4j GDS Library, I came across a Neo4j `NullPointer` error when trying to create a graph projection. It turned out it was the images that didn't have an image were causing the issue so I had to add some zero vectors in for these images.
 
 ```python  
 uri = "bolt://localhost:7687"
