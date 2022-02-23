@@ -242,7 +242,7 @@ with driver.session(database='products') as session:
 
 ### Comparing the images  
 
-So now we have all the products loaded into the database, each with a 2048 dimensional embedding of the product image. Now we can use the Neo4j KNN alogrithm to find the 10 most similar items for each item in our database. As usual, we will create the graph projection, run the algorithm on the projection and write the similarity relationships back to the graph.  
+So now we have all the products loaded into the database, each with a 2048 dimensional embedding of the product image. Now we can use the Neo4j KNN alogrithm to find the 10 most similar items for each item in our database. the KNN algorithm defaults to cosine similarity when the node properties are vectors which suits our embeddings perfectly. As usual, we will create the graph projection, run the algorithm on the projection and write the similarity relationships back to the graph.  
 
 
 ```js
