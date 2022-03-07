@@ -29,12 +29,13 @@ To start we'll import some packages and load some file paths...the usual stuff.
 # Load packages
 from pathlib import Path
 from matplotlib import image
-import matplotlib.pyplot as pyplot
+import matplotlib.pyplot as plt
 import numpy as np
-import python as pd
+import pandas as pd
 import implicit
 from scipy import sparse
 import datetime as dt
+from neo4j import GraphDatabase
 
 # Get all image file names
 IMAGE_DIR = '/Users/grantbeasley/Downloads/images/'
@@ -42,10 +43,6 @@ images = Path(IMAGE_DIR)
 all_files = [image for folder in images.iterdir() if not folder.name == '.DS_Store' for image in folder.iterdir() if image.suffix == '.jpg']  
 
 # Load the transaction data
-from neo4j import GraphDatabase
-import pandas as pd
-import datetime as dt
-
 uri = "bolt://localhost:7687"
 driver = GraphDatabase.driver(uri, auth=("neo4j", "password"))
 
