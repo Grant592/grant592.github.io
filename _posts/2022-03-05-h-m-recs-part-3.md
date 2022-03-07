@@ -42,12 +42,29 @@ images = Path(IMAGE_DIR)
 all_files = [image for folder in images.iterdir() if not folder.name == '.DS_Store' for image in folder.iterdir() if image.suffix == '.jpg']  
 
 # Load the transaction data
+from neo4j import GraphDatabase
 import pandas as pd
-purchases = pd.read_csv('transactions_train.csv')
-purchases['t_dat'] = pd.to_datetime(purchases['t_dat'])
+import datetime as dt
+
+uri = "bolt://localhost:7687"
+driver = GraphDatabase.driver(uri, auth=("neo4j", "password"))
+
+with driver.session(database='neo4j') as session:
+
+    query = """
+    MATCH (c:Customer)-[pur:PURCHASED]->(p:Product)
+    RETURN
+      pur.t_date as t_dat, c.id as customer_id, p.code as article_id
+    """
+
+    results = session.run(query)
+
+    purchases = [(record['t_dat'], record['customer_id'], record['article_id']) for record in results]
+
+purchases = pd.DataFrame(purchases, columns=['t_dat', 'customer_id', 'article_id'])
 ```  
 
-Another thing to note is that the most recent purchase in the transactions dataset is '2020-09-22' meaning we'll be making recommendations for the week proceeding that date.
+Another thing to note is that the most recent purchase in the transactions dataset is '2020-09-22' meaning we'll be making recommendations for the week proceeding that date.  
 
 ### Transaction Data  
 
@@ -274,7 +291,8 @@ compare_purchases_and_recs(167, rec_ids, rec_scores, idx_to_user, idx_to_article
 And below is the output - the first selection of images are a sample of the users purchases and the second images are the top 10 recommendations.  
 
 ![](/images/als_recs1.png)
-![](/images/als_recs2.png)
+![](/images/als_recs2.png)  
+
 
 ### Testing the Model  
 Now we know we've got some recommendations that would appear to make sense, we need to test our model on our testing set we create earlier.
