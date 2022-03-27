@@ -9,7 +9,7 @@ title: Data Blog
 author: Grant Beasley
 
 # Short bio or description (displayed in the header)
-description: Blog for data science and rugby stats
+description: Blog for data science, data engineering and a little bit of rugby stats
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: /images/cartoon_headshot.jpg
@@ -26,7 +26,7 @@ footer-links:
   flickr:
   github: 
   instagram:
-  linkedin: 
+  linkedin: www.linkedin.com/in/grant-beasley-5a271863
   pinterest:
   rss: rss
   twitter: grantbeasley
