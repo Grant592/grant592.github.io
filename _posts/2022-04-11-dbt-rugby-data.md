@@ -48,7 +48,7 @@ In terms of the project layout, my thinking was that we'll need a staging layer 
 ### Diving in Deeper  
 
 I'll not go into many of the staging models in detail as they're all fairly similar and apply only the lightest transformations to the raw data (e.g. columns names changes and other soft transformations) but as an example here is one staging model:  
-
+{% raw %}
 ```sql  
 with match_data as (
 
@@ -59,11 +59,13 @@ with match_data as (
 select * from match_data
 
 ```  
+{% endraw %}
 
 Next, we'll look at transforming some data to create an intermediate model to feed a position specific piece of analysis. Let's assume we want to compare scrum halves box kicking abilities. We can first create an intermediate model that returns only the box kicks and some derived outcomes and then further process this to return our analysis.  
 
 We'll start with the code for the `intermediate` model:  
 
+{% raw %}
 ```sql  
 with box_kicks as (
 
@@ -88,11 +90,12 @@ with box_kicks as (
 select * from box_kicks
 
 ```  
+{% endraw %}
 
 A fairly simple model - we get each instance of a box quick and transform the outcome so we have a simple indicator as to whether the kick landed in the 15m channel (yes, this will depend on the context and situation of the kick but in general this is the target).  
 
 We can then use this is our position specific model:  
-
+{% raw %}
 ```sql  
 {% set outcomes = dbt_utils.get_column_values(table=ref('intermediate__scrum_half'), column='action_result') %}
 
@@ -152,15 +155,18 @@ inner join {{ ref('stg_players') }} as players using (plid)
 
 select * from kicks_per_min
 ```  
-
+{% endraw %}
 Let's break this down piece by piece...  
 
+{% raw %}
 ```sql
 {% set outcomes = dbt_utils.get_column_values(table=ref('intermediate__scrum_half'), column='action_result') %}
 ```  
+{% endraw %}
 
 In the first part we're using a `dbt_utils` function to get the unique values in a column from another model. This is the equivalent of `select distinct action_type from table` and returning the values as a list. We'll go on to use this when we pivot the data.  
 
+{% raw %}
 ```sql  
 with kick_totals as (
 
@@ -182,11 +188,13 @@ with kick_totals as (
 
 )
 ```  
+{% endraw %}
 
 The purpose of this snippet is find each player, the number of games they've played in and the rate of which the box kicks landed in a 15m channel. We also use the outcome of our `get_column_values` function to pivot the table by iterating though the list and creating a column for each outcome. One thing we have to do though is use a `modules.re.sub('[ \-()]', '_', outcome)` to ensure the label can also be used as a column name i.e, it contains no spaces or hyphens.
 
 Next we need to filter this down to only those players who have ever played scrum half and calculate the number of minutes they have played:  
 
+{% raw %}
 ```sql  
 player_minutes as (
 
@@ -208,10 +216,13 @@ player_minutes as (
 
 )
 ```  
+{% endraw %}
 
 Another fairly simple CTE where we reference the team sheet data from all the matches to find only those who have ever played at 9 and then sum up the minutes played.  
 
 Finally we create the usable output:  
+
+{% raw %}
 ```sql  
 kicks_per_min as (
 
@@ -229,15 +240,18 @@ inner join {{ ref('stg_players') }} as players using (plid)
 
 select * from kicks_per_min  
 ```  
+{% endraw %}
 
 And now once we've run this query let's have a look at the output - we'll get the scrum halves with the highest percentage of kicks that landed in a 15m channel given that they've played the equivalent of at least 10 full games
 
+{% raw %}
 ```sql  
 select * from {{ ref('scrum_half_box_kick') }}
 where mins_played >= 800
 and kicks_per_80 > 3
 order by landed_in_15_rate desc  
-```  
+```
+{% endraw %}
 
 ![](/images/scrum_half.png)  
 
