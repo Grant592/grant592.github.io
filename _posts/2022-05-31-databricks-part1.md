@@ -104,7 +104,7 @@ artists = {
 
 A fine selection of bands if I do say so (although I've never been a Pink Floyd fan for some reason)...  
 
-Anyway, we'll also create a few helper functions to format the parameters need for the API call and process the requests. The function names should be rather self-explanatory.  
+Anyway, we'll also create a few helper functions to format the parameters needed for the API call and process the requests. The function names should be rather self-explanatory.  
 
 ```python  
 def get_album_ids_for_artist(artist: str, limit: int = 50, offset: int = 0) -> list:
@@ -161,7 +161,7 @@ def get_tracks_audio_features(tracks: str) -> list:
     return track_features  
   ```  
 
-  Now using the functions above, we need to go through a few stages. To avoid hitting the Spotify API rate limit (although they don't seem to make this public anywhere) we'll try to use requests which can take mstrings of multiple id's in one call. The stages are:
+  Now using the functions above, we need to go through a few stages. To avoid hitting the Spotify API rate limit (although they don't seem to make this public anywhere) we'll try to use requests which can take strings of multiple id's in one call. The stages are:
   * Get list of artists (already stored in dict) - for each artist
     * Get list of albums - for each album
       * Get all tracks - join tracks into string of 100 song ids max
@@ -214,7 +214,7 @@ for artist_name, artist_data in artists.items():
         artist_data['tracks'].extend(tracks)
 ```  
 
-And finally we can retrieve the aduio featurs for each track in a similar fashion. we can pass up to 100 tracks per API call for this request.
+And finally we can retrieve the audio features for each track in a similar fashion. We can pass up to 100 tracks per API call for this request.
 
 ```python  
 output = []
@@ -308,7 +308,7 @@ display(df
 |        Rush|0.07189137062986556|0.36448478414720475| 5.700721325784383|  0.815637296532201| 0.16446113754423214| 0.5545845718329792|  -8.06344939844303|0.06928683651804671| 128.3137940552018| 0.4109498938428876|
 |        Asia|0.25772684318766065| 0.3954010282776349|5.0995668808911745| 0.7205347043701799| 0.04524703089974293| 0.4367948586118253| -7.924539845758358|0.06118123393316195|126.95846529562988|0.37722210796915173|  
 
-And we can see that rush come out as the most 'energetic' of the 10 prog bands in the sample which shouldn't come as too much of a suprise, even if my friend Luc would like to argue otherwise.  
+And we can see that Rush come out as the most 'energetic' of the 10 prog bands in the sample which shouldn't come as too much of a suprise, even if my friend Luc would like to argue otherwise.  
 
 Window functions are a little bit different but work exactly the same as their SQL equivalents. Let's have a look at the most 'danceable' prog tracks for each of our bands  
 
@@ -342,15 +342,4 @@ df_top_dance.show()
 
 ### Stay Tuned  
 
-For part 1 we've looked at accessing the Spotify API, creating a Spark Dataframe from the data and then someof the basic syntax for querying the dataframe. For part two next week we'll look at running experiments with MLflow and hyperparameter tuning with Hyperopt.  
-
-
-
-
-
-
-
-
-
-
-
+For part 1 we've looked at accessing the Spotify API, creating a Spark Dataframe from the data and then some of the basic syntax for querying the dataframe. For part two next week we'll look at running experiments with MLflow and hyperparameter tuning with Hyperopt.  
