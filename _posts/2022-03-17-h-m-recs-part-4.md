@@ -5,6 +5,12 @@ comments: true
 categories: [ Data Science, Neo4j ]
 ---
 
+### UPDATE 15th July 2022
+
+I recently presented this project at the Neo4j meetup on 12th July. I've uploaded the slides to the github repository [here](https://github.com/Grant592/H-M_recs/blob/main/recommendations.pdf).
+
+### Intro
+
 For anyone still reading, well done for making it this far. We'll try to tie all the previous posts together in this one and create the recommendations we'll use for the Kaggle entry.
 * Part 1 - [loading the data and EDA]({% post_url 2022-02-17-h-m-recs-part-1 %})  
 * Part 2 - [image based recommendations]({% post_url 2022-02-23-h-m-recs-part-2 %})
