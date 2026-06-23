@@ -1,0 +1,9 @@
+requests>=2.31
+beautifulsoup4>=4.12
+PyYAML>=6.0
+python-dotenv>=1.0
+anthropic>=0.40
+# Google APIs (only needed once you wire up Search Console / GBP)
+google-api-python-client>=2.0
+google-auth>=2.0
+google-auth-oauthlib>=1.0

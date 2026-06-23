@@ -1,0 +1,11 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+out/
+*.log
+# Google OAuth artifacts
+credentials.json
+token.json
+client_secret*.json

@@ -1,0 +1,81 @@
+# ---------------------------------------------------------------------------
+# Laura Beasley Photography — SEO/GEO toolkit configuration
+# Edit this file to tune the toolkit. No code changes needed.
+# ---------------------------------------------------------------------------
+
+business:
+  name: "Laura Beasley Photography"
+  owner: "Laura Beasley"
+  website: "https://laurabeasley.photography"
+  email: ""                       # public contact email (for schema)
+  phone: ""                       # public phone (optional, for schema)
+  instagram: "https://www.instagram.com/laurabeasleyphotography"
+  facebook: "https://www.facebook.com/laurabeasleyphotography"
+  # Short, quotable description — AI engines lift sentences like this verbatim.
+  tagline: >-
+    Laura Beasley is a North East England wedding photographer specialising in
+    relaxed, documentary-style wedding photography across Newcastle, Durham,
+    Northumberland, Sunderland and North Yorkshire.
+  founding_year: ""               # optional
+  price_range: "££"               # Google/Schema price indicator
+
+# Primary service region. Used for local landing pages, GBP service area,
+# keyword expansion and schema areaServed.
+service_area:
+  primary_region: "North East England"
+  cities:
+    - "Newcastle upon Tyne"
+    - "Durham"
+    - "Sunderland"
+    - "Gateshead"
+    - "Northumberland"
+    - "North Yorkshire"
+    - "Tyne and Wear"
+    - "Teesside"
+
+# Key wedding venues to target with dedicated guide pages / blog posts.
+# These rank for "[venue] wedding photographer" — high intent, low competition.
+# Fill in the venues you actually shoot / want to shoot at.
+venues:
+  - "Crathorne Hall"
+  - "Newton Hall"
+  - "Beamish Hall"
+  - "Healey Barn"
+  - "As You Like It, Jesmond"
+  # add more...
+
+# Target keywords (seed list — content.ideas will expand these from Search Console)
+keywords:
+  primary:
+    - "north east wedding photographer"
+    - "newcastle wedding photographer"
+    - "durham wedding photographer"
+    - "northumberland wedding photographer"
+    - "north yorkshire wedding photographer"
+  secondary:
+    - "documentary wedding photographer north east"
+    - "relaxed wedding photographer newcastle"
+    - "natural wedding photography durham"
+
+# GEO monitoring — the questions we ask AI engines to see if Laura is cited.
+# Phrase them the way a real couple would ask.
+geo_queries:
+  - "Who are the best wedding photographers in Newcastle?"
+  - "Recommend a documentary wedding photographer in the North East of England"
+  - "Wedding photographer near Durham for a relaxed style wedding"
+  - "Good wedding photographers in Northumberland"
+  - "Wedding photographer for a North Yorkshire country house wedding"
+
+# Brand terms used to detect a citation in AI answers / SERPs.
+brand_terms:
+  - "Laura Beasley"
+  - "laurabeasley.photography"
+  - "Laura Beasley Photography"
+
+# LLM settings (Anthropic). Haiku is cheap for drafts; Sonnet for final polish.
+llm:
+  draft_model: "claude-haiku-4-5-20251001"
+  quality_model: "claude-sonnet-4-6"
+  vision_model: "claude-haiku-4-5-20251001"
+
+output_dir: "out"
